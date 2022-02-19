@@ -1,0 +1,42 @@
+server.port=8050
+spring.application.name=zuul-server
+#server.servlet.context-path=/user
+
+#spring.cloud.gateway.routes.id=client1
+
+#spring.cloud.gateway.routes.predicates=
+#spring.cloud.gateway.predicate.path.enabled=true
+
+#zuul.routes.client.path=/eureka-client1/**
+#zuul.routes.client.service-id=eureka-client1
+#zuul.routes.eureka-client2.path=/eureka-client2/**
+#zuul.routes.eureka-client2.service-id=eureka-client2
+
+#zuul.routes.eureka-client1.path=/eureka-client1/**
+#zuul.routes.eureka-client1.url=http://localhost:8121/
+#zuul.routes.eureka-client2.path=/eureka-client2/**
+#zuul.routes.eureka-client2.url=eureka-client2
+
+eureka.client.service-url.default-zone=http://localhost:8761/eureka
+eureka.instance.prefer-ip-address=true
+#eureka.client.registerWithEureka=true
+#eureka.client.fetchRegistry=true
+#spring.main.allow-bean-definition-overriding=true
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+      - id: order
+        uri: lb://order-service
+          #http://localhost:9002/
+        predicates:
+        - Path=/order/**
+      - id: user
+        uri: lb://user-service
+          #http://localhost:9001/
+        predicates:
+        - Path=/user/**
+

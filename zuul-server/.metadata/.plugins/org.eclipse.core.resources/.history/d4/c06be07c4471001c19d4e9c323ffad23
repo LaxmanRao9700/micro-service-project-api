@@ -1,0 +1,14 @@
+server.port=8050
+spring.application.name=zuul-server
+#eureka.client.registerWithEureka=false
+#eureka.client.fetchRegistry=true
+zuul.routes.eureka-client1.path=/eureka-client1/**
+zuul.routes.eureka-client1.service-id=eureka-client1
+zuul.routes.eureka-client2.path=/eureka-client2/**
+zuul.routes.eureka-client2.service-id=eureka-client2
+eureka.client.service-url.default-zone=http://localhost:8761/eureka/
+eureka.instance.prefer-ip-address=true
+#spring.main.allow-bean-definition-overriding=true
+
+
+

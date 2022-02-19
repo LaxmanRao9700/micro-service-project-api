@@ -1,0 +1,21 @@
+server:
+  port: 9000
+  
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: false
+  
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+      - id: eureka-client1
+        uri: lb://eureka-client1
+          #http://localhost:8122/
+        predicates:
+        - Path=/eureka-client1/**
